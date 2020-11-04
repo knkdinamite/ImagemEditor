@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0099ff</color>
+    <color name="colorPrimaryDark">#006ccb</color>
+    <color name="colorAccent">#69c9ff</color>
+    <color name="btPrimary">#0275d8</color>
+    <color name="btSuccess">#5cb85c</color>
+    <color name="btInfo">#5bc0de</color>
+    <color name="btWarning">#f0ad4e</color>
+    <color name="btDanger">#d9534f</color>
+    <color name="white">#ffffff</color>
+    <color name="grey">#f5f6f6</color>
+    <color name="grey_black">#37474f</color>
+    <color name="roxo">#6a1b9a</color>
+    <color name="colorDark">#000000</color>
+
+
+
+
+</resources>
