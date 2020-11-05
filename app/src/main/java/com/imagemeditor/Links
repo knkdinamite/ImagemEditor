@@ -12,3 +12,14 @@ https://freakycoder.com/android-notes-44-how-to-convert-base64-string-to-bitmap-
 
 https://www.tutorialspoint.com/how-to-convert-a-base64-string-into-a-bitmap-image-in-android-app
 
+
+
+
+
+
+
+Ideia.
+Procurar conversor de jpg para png code android java.
+fazer implementacao da hardware storage
+depois da conversao fazer call post e fazer requisicao no site
+e receber call get com a imagem sem fundo.
