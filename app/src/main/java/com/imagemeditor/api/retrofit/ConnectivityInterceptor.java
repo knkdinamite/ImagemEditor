@@ -2,7 +2,7 @@ package com.imagemeditor.api.retrofit;
 
 import android.content.Context;
 
-import com.projeto_padrao.models.Android;
+import com.imagemeditor.models.Android;
 
 import java.io.IOException;
 

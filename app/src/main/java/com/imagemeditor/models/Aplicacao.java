@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-
+import com.imagemeditor.activity.FotoActivity;
 
 
 public class Aplicacao {
@@ -30,4 +30,10 @@ public class Aplicacao {
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(homeIntent);
     }
+
+    public static void irParaFotoActivity(Context context) {
+        Intent intent = new Intent(context, FotoActivity.class);
+        context.startActivity(intent);
+    }
+
 }

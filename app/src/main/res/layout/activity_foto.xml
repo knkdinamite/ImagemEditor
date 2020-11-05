@@ -36,7 +36,7 @@
         android:layout_marginTop="200dp"
         android:gravity="center"
         android:text="Imagem Editor"
-        android:textAppearance="@"
+
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="normal"
