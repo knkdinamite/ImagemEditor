@@ -62,26 +62,28 @@ public class FotoActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
-
+            converterImagemBitParaPng(photo);
             imageView.setImageBitmap(photo);
-            Foto.saveBitmap("name","photo",photo);
+
 
         }
 
     }
 
-    public static String converterImagemBitParaPng(Bitmap image)
-    {
-        Bitmap immagex=image;
+    public static Bitmap converterImagemBitParaPng(Bitmap foto) {
+        Bitmap immagex=foto;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         immagex.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] b = baos.toByteArray();
         String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
-        decodeBase64(imageEncoded);
+        b = Base64.decode(imageEncoded, Base64.DEFAULT);
+        Bitmap decodedImage = BitmapFactory.decodeByteArray(b, 0, b.length);
+        Foto.setImageBitmap(decodedImage);
 
         Log.e("LOOK", imageEncoded);
-        return imageEncoded;
 
+
+        return decodedImage;
     }
 
     public static Bitmap decodeBase64(String input)

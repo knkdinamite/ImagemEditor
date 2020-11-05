@@ -29,21 +29,16 @@ import retrofit2.Response;
 import static android.content.ContentValues.TAG;
 
 public class Foto extends SugarRecord {
+    private static Bitmap imageBitmap;
     private Context context;
-    private String Foto;
 
 
-    public String getFoto() {
-        return Foto;
+    public static Bitmap getImageBitmap() {
+        return imageBitmap;
     }
 
-    public void setFoto(String foto) {
-        Foto = foto;
-    }
-
-    private void openCamera() {
-
-
+    public static void setImageBitmap(Bitmap imageBitmap) {
+        Foto.imageBitmap = imageBitmap;
     }
 
     private void enviar() {
