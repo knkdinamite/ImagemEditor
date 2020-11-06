@@ -23,3 +23,10 @@ Procurar conversor de jpg para png code android java.
 fazer implementacao da hardware storage
 depois da conversao fazer call post e fazer requisicao no site
 e receber call get com a imagem sem fundo.
+
+
+
+Resolver o problema e chamando o metodo na hora de iniciar a plicacao e fazer com q a msm peça para
+permitir o acesso ao storage.
+sendo assim o app funcionara corretamente, e o erro desaparecera por completo, faltando
+apenas os metodos de post e get do app.
