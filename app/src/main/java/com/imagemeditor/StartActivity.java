@@ -60,12 +60,12 @@ public class StartActivity extends AppCompatActivity {
             //resume tasks needing this permission
         }
         if (requestCode == MY_CAMERA_PERMISSION_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+           if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
                 Aplicacao.irParaFotoActivity(StartActivity.this);
             } else {
                 Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
             }
-        }
+       }
     }
 }

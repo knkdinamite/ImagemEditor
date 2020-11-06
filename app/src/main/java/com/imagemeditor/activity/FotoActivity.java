@@ -32,7 +32,7 @@ public class FotoActivity extends AppCompatActivity {
 
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imageView;
-    private static final int MY_CAMERA_PERMISSION_CODE = 100;
+
     ImageView cameraView;
 
 
@@ -54,28 +54,12 @@ public class FotoActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK ) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
-            //converterImagemBitParaPng(photo);
             saveImage(photo);
             imageView.setImageBitmap(photo);
         }
 
     }
 
-    public static Bitmap converterImagemBitParaPng(Bitmap foto) {
-        Bitmap immagex=foto;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        immagex.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
-        b = Base64.decode(imageEncoded, Base64.DEFAULT);
-        Bitmap decodedImage = BitmapFactory.decodeByteArray(b, 0, b.length);
-        Foto.setImageBitmap(decodedImage);
-
-        Log.e("LOOK", imageEncoded);
-
-
-        return decodedImage;
-    }
 
 
     private void saveImage(Bitmap finalBitmap) {
