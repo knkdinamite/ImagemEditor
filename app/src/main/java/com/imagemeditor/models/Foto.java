@@ -21,12 +21,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Date;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.content.ContentValues.TAG;
+import static android.os.Environment.getExternalStorageDirectory;
 
 public class Foto extends SugarRecord {
     private static Bitmap imageBitmap;
@@ -58,44 +60,16 @@ public class Foto extends SugarRecord {
 
             @Override
             public void onFailure(@NonNull Call<Foto> call, @NonNull Throwable t) {
-                Log.e("retrofit", "Erro ao enviar o usuario:" + t.getMessage());
+                Log.e("retrofit", "Erro ao enviar o arquivo:" + t.getMessage());
                 //((RegisterActivity)context).esconderProgressBar();
             }
         });
 
     }
+}
 
 
-        public static void saveBitmap(String path, String bitName,
-                Bitmap mBitmap) {//  ww  w.j  a va 2s.c  o  m
 
-            File f = new File(Environment.getExternalStorageDirectory()
-                    .toString() + "/" + bitName + ".png");
-            try {
-                f.createNewFile();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-            }
-            FileOutputStream fOut = null;
-            try {
-                fOut = new FileOutputStream(f);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
-            try {
-                fOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                fOut.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
 
 
 
