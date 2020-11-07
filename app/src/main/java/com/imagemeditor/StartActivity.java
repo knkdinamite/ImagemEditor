@@ -23,21 +23,21 @@ public class StartActivity extends AppCompatActivity {
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
         verificarPermissionCamera();
-        isStoragePermissionGranted();
+
     }
 
     private void verificarPermissionCamera() {
         if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
-        } else {
-            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+        }else {
+            isStoragePermissionGranted();
         }
     }
 
@@ -46,6 +46,7 @@ public class StartActivity extends AppCompatActivity {
         if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 == PackageManager.PERMISSION_GRANTED) {
             Log.v("result","Permission is granted");
+            Aplicacao.irParaFotoActivity(StartActivity.this);
         } else {
 
             Log.v("TAG","Permission is revoked");
@@ -59,6 +60,7 @@ public class StartActivity extends AppCompatActivity {
         if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
             Log.v("TAG","Permission: "+permissions[0]+ "was "+grantResults[0]);
             //resume tasks needing this permission
+            isStoragePermissionGranted();
         }
         if (requestCode == MY_CAMERA_PERMISSION_CODE) {
            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {

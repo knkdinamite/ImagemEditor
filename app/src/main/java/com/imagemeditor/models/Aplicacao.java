@@ -2,7 +2,6 @@ package com.imagemeditor.models;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 
 import com.imagemeditor.activity.FotoActivity;
 
@@ -35,5 +34,6 @@ public class Aplicacao {
         Intent intent = new Intent(context, FotoActivity.class);
         context.startActivity(intent);
     }
+
 
 }
