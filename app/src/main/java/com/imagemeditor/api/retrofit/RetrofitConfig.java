@@ -2,7 +2,7 @@ package com.imagemeditor.api.retrofit;
 
 import android.content.Context;
 
-import com.imagemeditor.api.servicos.UserService;
+import com.imagemeditor.api.servicos.FotoService;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -34,8 +34,8 @@ public class RetrofitConfig {
 
 
 
-    public UserService setUserService() {
-        return this.retrofit.create(UserService.class);
+    public FotoService setFotoService() {
+        return this.retrofit.create(FotoService.class);
     }
 
 

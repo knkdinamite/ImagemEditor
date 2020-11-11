@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.imagemeditor.activity.FotoActivity;
+import com.imagemeditor.activity.ViewActivity;
 
 
 public class Aplicacao {
@@ -32,6 +33,11 @@ public class Aplicacao {
 
     public static void irParaFotoActivity(Context context) {
         Intent intent = new Intent(context, FotoActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void irParaViewActivity(Context context){
+        Intent intent = new Intent(context, ViewActivity.class);
         context.startActivity(intent);
     }
 

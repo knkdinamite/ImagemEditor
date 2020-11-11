@@ -11,8 +11,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
-    <protected-broadcast android:name="android.intent.action.MEDIA_MOUNTED" />
+    <uses-permission
+        android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
+    <protected-broadcast android:name="android.intent.action.MEDIA_MOUNTED" />
 
     <application
         android:name="com.orm.SugarApp"
@@ -25,6 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
+        <activity android:name=".activity.ViewActivity"></activity>
         <activity android:name=".activity.FotoActivity" />
 
         <meta-data
