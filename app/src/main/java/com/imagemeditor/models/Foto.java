@@ -19,6 +19,7 @@ import com.orm.SugarRecord;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -40,7 +41,9 @@ public class Foto extends SugarRecord {
     private Uri uri;
     private String local;
 
-    public Foto() {
+    public Foto(Context context, String local) {
+        this.context = context;
+        this.local = local;
     }
 
     public Foto(Context context, boolean enviada, Bitmap imageBitmap) {
@@ -53,9 +56,12 @@ public class Foto extends SugarRecord {
         this.context = context;
         this.file = file;
     }
+    public Foto() {
+
+    }
 
     public String getLocal() {
-        //storage/emulated/0/Imagem_Editor/Saved_Images
+        // /storage/emulated/0/Imagem_Editor/Saved_Images
         return local;
     }
 
@@ -65,7 +71,7 @@ public class Foto extends SugarRecord {
 
     public Uri getUri() {
 
-        this.uri = Uri.fromFile(this.file);
+        this.uri = Uri.fromFile(new File(this.local));
 
         return uri;
     }
@@ -115,7 +121,8 @@ public class Foto extends SugarRecord {
     public void saveImage() {
 
         String root = Environment.getExternalStorageDirectory().toString();
-        File myDir = new File(root + "/Imagem_Editor/Saved_Images");
+        String local = root + "/Imagem_Editor/Saved_Images";
+        File myDir = new File(local);
         if (!myDir.exists()) {
             myDir.mkdirs();
         }
@@ -146,18 +153,15 @@ public class Foto extends SugarRecord {
 
         this.file = file;
 
+        this.local = local;
+
         this.save();
 
     }
 
     public void uploadFile() {
-        // create upload service client
-        FotoService fotoService = null;
 
-        // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro/afilechooser/utils/FileUtils.java
-        // use the FileUtils to get the actual file by uri
-
-        File file =new File(this.getUri().getPath());
+        File file =new File(this.local);
 
         // create RequestBody instance from file
         RequestBody requestFile = RequestBody.create(MediaType.parse(Objects.requireNonNull(this.context.getContentResolver().getType(this.getUri()))), file);
@@ -172,8 +176,7 @@ public class Foto extends SugarRecord {
                 RequestBody.create(
                         okhttp3.MultipartBody.FORM, descriptionString);
 
-        // finally, execute the request
-        Call<ResponseBody> call = fotoService.enviarfoto(description, body);
+        Call<ResponseBody> call = new RetrofitConfig(this.getContext()).setFotoService().enviarfoto(description,body);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call,
