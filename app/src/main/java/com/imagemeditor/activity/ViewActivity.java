@@ -20,7 +20,7 @@ public class ViewActivity extends AppCompatActivity {
         for(Foto foto : fotos){
             if(!foto.isEnviada()){
 
-                Foto fotoParaEnviar = new Foto(ViewActivity.this,foto.getLocal());
+                Foto fotoParaEnviar = new Foto();
                 fotoParaEnviar.uploadFile();
             }
         }

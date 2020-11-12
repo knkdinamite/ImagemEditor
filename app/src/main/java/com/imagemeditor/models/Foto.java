@@ -41,16 +41,18 @@ public class Foto extends SugarRecord {
     private Uri uri;
     private String local;
 
-    public Foto(Context context, String local) {
+    public Foto(Context context, String local, Bitmap image) {
         this.context = context;
         this.local = local;
+        this.file = getFile();
+        this.uri = getUri();
+        this.enviada = false;
+        this.imageBitmap = image;
+
+
     }
 
-    public Foto(Context context, boolean enviada, Bitmap imageBitmap) {
-        this.context = context;
-        this.enviada = enviada;
-        this.imageBitmap = imageBitmap;
-    }
+
 
     public Foto(Context context, File file) {
         this.context = context;
@@ -98,7 +100,7 @@ public class Foto extends SugarRecord {
     }
 
     public File getFile() {
-        return file;
+        return new File(this.local);
     }
 
     public void setFile(File file) {
@@ -118,7 +120,7 @@ public class Foto extends SugarRecord {
 
     }
 
-    public void saveImage() {
+    public static void saveImage(Bitmap bitmap,Context context) {
 
         String root = Environment.getExternalStorageDirectory().toString();
         String local = root + "/Imagem_Editor/Saved_Images";
@@ -135,7 +137,7 @@ public class Foto extends SugarRecord {
             file.delete();
         try {
             FileOutputStream out = new FileOutputStream(file);
-            this.imageBitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
             out.flush();
             out.close();
 
@@ -144,18 +146,16 @@ public class Foto extends SugarRecord {
         }
         try {
 
-            this.context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
-                    Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+            context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+                    Uri.parse("file:/ " + Environment.getExternalStorageDirectory())));
 
         } catch (Exception e) {
             Log.d("Erro_Foto","Erro: "+ e);
         }
 
-        this.file = file;
-
-        this.local = local;
-
-        this.save();
+        String endereçoCompleto = local + fname;
+        Foto foto = new Foto(context,local, bitmap);
+        foto.save(endereçoCompleto);
 
     }
 

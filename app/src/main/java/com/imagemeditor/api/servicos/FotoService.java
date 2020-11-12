@@ -19,7 +19,7 @@ public interface FotoService {
 
 
 
-    @GET("")
+    @GET("fotos/")
     Call<Foto> receberfoto(@Header("Authorization") String key);
 
     @Multipart
